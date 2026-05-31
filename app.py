@@ -10,18 +10,15 @@ from flask import (
 from markupsafe import Markup, escape
 from werkzeug.utils import secure_filename
 
-try:
-    import mysql.connector
-    MYSQL_AVAILABLE = True
-except ImportError:
-    MYSQL_AVAILABLE = False
+import mysql.connector
+MYSQL_AVAILABLE = True
 
 
 DB_CONFIG = {
     "host": os.environ.get("MYSQL_HOST", "localhost"),
     "port": int(os.environ.get("MYSQL_PORT", 3306)),
     "user": os.environ.get("MYSQL_USER", "root"),
-    "password": os.environ.get("MYSQL_PASSWORD"),
+    "password": os.environ.get("MYSQL_PASSWORD", "aiu@Leang7788"),
     "database": os.environ.get("MYSQL_DATABASE", "school_erp"),
 }
 
