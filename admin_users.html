@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Users</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Users Management</h1>
+            <a href="{{ url_for('admin_add_user') }}" class="btn btn-primary">Add User</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Role</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                    <tr>
+                        <td>{{ user.user_id }}</td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.role }}</td>
+                        <td>{{ user.fullname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.phone }}</td>
+                        <td>{{ user.status }}</td>
+                        <td>
+                            <a href="{{ url_for('admin_edit_user', user_id=user.user_id) }}" class="btn btn-info" style="padding: 5px 10px; font-size: 12px;">Edit</a>
+                            {% if user.user_id != 1 %}
+                                <a href="{{ url_for('admin_toggle_user_status', user_id=user.user_id) }}" class="btn btn-warning" style="padding: 5px 10px; font-size: 12px;">Toggle</a>
+                                <a href="{{ url_for('admin_delete_user', user_id=user.user_id) }}" class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;" onclick="return confirm('Delete this user and all related data? This cannot be undone.');">Delete</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

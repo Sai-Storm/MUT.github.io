@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>My Attendance</h1>
+            <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for att in attendance %}
+                    <tr>
+                        <td>{{ att.date }}</td>
+                        <td>{{ att.subject_name }}</td>
+                        <td>{{ att.status }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Classes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Classes Management</h1>
+            <a href="{{ url_for('admin_add_class') }}" class="btn btn-primary">Add Class</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Class Name</th>
+                        <th>Section</th>
+                        <th>Class Teacher</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for class in classes %}
+                    <tr>
+                        <td>{{ class.class_id }}</td>
+                        <td>{{ class.class_name }}</td>
+                        <td>{{ class.section }}</td>
+                        <td>{{ class.teacher_name or 'N/A' }}</td>
+                        <td>
+                            <a href="{{ url_for('admin_edit_class', class_id=class.class_id) }}" class="btn btn-info" style="padding: 5px 10px; font-size: 12px;">Edit</a>
+                            <a href="{{ url_for('admin_delete_class', class_id=class.class_id) }}" class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;" onclick="return confirm('Delete this class and all students in it? This cannot be undone.');">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

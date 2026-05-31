@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </header>
+        <nav>
+            <a href="{{ url_for('admin_users') }}">Users</a>
+            <a href="{{ url_for('admin_teachers') }}">Teachers</a>
+            <a href="{{ url_for('admin_students') }}">Students</a>
+            <a href="{{ url_for('admin_subjects') }}">Subjects</a>
+            <a href="{{ url_for('admin_classes') }}">Classes</a>
+            <a href="{{ url_for('admin_notices') }}">Post Notice</a>
+            <!-- Add more links for timetable, reports -->
+        </nav>
+        <main>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total Users</h3>
+                    <p>{{ total_users }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Students</h3>
+                    <p>{{ total_students }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Teachers</h3>
+                    <p>{{ total_teachers }}</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Subjects</h3>
+                    <p>{{ total_subjects }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher - Assignments</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>My Assignments</h1>
+            <a href="{{ url_for('teacher_dashboard') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Class</th>
+                        <th>Section</th>
+                        <th>Due Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for assignment in assignments %}
+                    <tr>
+                        <td>{{ assignment.assignment_id }}</td>
+                        <td>{{ assignment.title }}</td>
+                        <td>{{ assignment.class_name }}</td>
+                        <td>{{ assignment.section }}</td>
+                        <td>{{ assignment.due_date }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student - Timetable</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>My Timetable</h1>
+            <a href="{{ url_for('student_dashboard') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in timetable %}
+                    <tr>
+                        <td>{{ entry.day }}</td>
+                        <td>{{ entry.start_time }} - {{ entry.end_time }}</td>
+                        <td>{{ entry.subject_name }}</td>
+                        <td>{{ entry.teacher_name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

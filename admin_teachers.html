@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Teachers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Teachers Management</h1>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <nav>
+            <a href="{{ url_for('admin_add_teacher') }}">Add Teacher</a>
+        </nav>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Subjects</th>
+                        <th>Qualification</th>
+                        <th>Experience</th>
+                        <th>Joining Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for teacher in teachers %}
+                    <tr>
+                        <td>{{ teacher.teacher_id }}</td>
+                        <td>{{ teacher.name }}</td>
+                        <td>{{ teacher.department }}</td>
+                        <td>{{ teacher.subjects }}</td>
+                        <td>{{ teacher.qualification }}</td>
+                        <td>{{ teacher.experience }}</td>
+                        <td>{{ teacher.joining_date }}</td>
+                        <td>
+                            <a href="{{ url_for('admin_edit_teacher', teacher_id=teacher.teacher_id) }}" class="btn btn-secondary">Edit</a>
+                            <a href="{{ url_for('admin_delete_teacher', teacher_id=teacher.teacher_id) }}" class="btn btn-danger" onclick="return confirm('Delete this teacher?');">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Subjects</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Subjects Management</h1>
+            <a href="{{ url_for('admin_add_subject') }}" class="btn btn-primary">Add Subject</a>
+            <a href="{{ url_for('admin_dashboard') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Subject Name</th>
+                        <th>Teacher</th>
+                        <th>Class</th>
+                        <th>Section</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for subject in subjects %}
+                    <tr>
+                        <td>{{ subject.subject_id }}</td>
+                        <td>{{ subject.subject_name }}</td>
+                        <td>{{ subject.teacher_name or 'N/A' }}</td>
+                        <td>{{ subject.class_name }}</td>
+                        <td>{{ subject.section }}</td>
+                        <td>
+                            <a href="{{ url_for('admin_edit_subject', subject_id=subject.subject_id) }}" class="btn btn-info" style="padding: 5px 10px; font-size: 12px;">Edit</a>
+                            <a href="{{ url_for('admin_delete_subject', subject_id=subject.subject_id) }}" class="btn btn-danger" style="padding: 5px 10px; font-size: 12px;" onclick="return confirm('Delete this subject and all related data? This cannot be undone.');">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+    </div>
+</body>
+</html>

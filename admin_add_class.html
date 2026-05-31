@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Class</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Add New Class</h1>
+            <a href="{{ url_for('admin_classes') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            <form method="POST" class="form">
+                <div class="form-group">
+                    <label for="class_name">Class Name</label>
+                    <select id="class_name" name="class_name" required>
+                        {% for i in range(1, 13) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="section">Section</label>
+                    <select id="section" name="section" required>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="class_teacher_id">Class Teacher</label>
+                    <select id="class_teacher_id" name="class_teacher_id">
+                        <option value="">None</option>
+                        {% for teacher in teachers %}
+                        <option value="{{ teacher.teacher_id }}">{{ teacher.teacher_id }} - {{ teacher.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Class</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Student Dashboard</h1>
+            <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+        </header>
+        <nav>
+            <a href="{{ url_for('student_attendance') }}">My Attendance</a>
+            <a href="{{ url_for('student_assignments') }}">Assignments</a>
+            <a href="{{ url_for('student_marks') }}">View Marks</a>
+            <a href="{{ url_for('student_timetable') }}">Timetable</a>
+            <!-- Add more links -->
+        </nav>
+        <main>
+            {% if student %}
+            <h2>Welcome, {{ student.name }}</h2>
+            <p>Class: {{ student['class'] }}-{{ student.section }}</p>
+            <p>Roll No: {{ student.roll_no }}</p>
+            {% else %}
+            <p>Student profile not found.</p>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>

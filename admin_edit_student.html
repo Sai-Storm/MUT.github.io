@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>Edit Student</h1>
+            <a href="{{ url_for('admin_students') }}" class="btn btn-secondary">Back</a>
+        </header>
+        <main>
+            {% if student %}
+            <form method="POST" class="form">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" value="{{ student.name }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="class">Class</label>
+                    <select id="class" name="class" required>
+                        {% for i in range(1, 13) %}
+                        <option value="{{ i }}" {% if student['class'] == i|string %}selected{% endif %}>{{ i }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="section">Section</label>
+                    <select id="section" name="section" required>
+                        {% for opt in ['A', 'B', 'C', 'D', 'E'] %}
+                        <option value="{{ opt }}" {% if student.section == opt %}selected{% endif %}>{{ opt }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="roll_no">Roll Number</label>
+                    <input type="text" id="roll_no" name="roll_no" value="{{ student.roll_no }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" value="{{ student.dob }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        {% for option in ['Male', 'Female', 'Other'] %}
+                        <option value="{{ option }}" {% if student.gender == option %}selected{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea id="address" name="address">{{ student.address }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="parent_name">Parent Name</label>
+                    <input type="text" id="parent_name" name="parent_name" value="{{ student.parent_name }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="parent_phone">Parent Phone</label>
+                    <input type="text" id="parent_phone" name="parent_phone" value="{{ student.parent_phone }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="admission_date">Admission Date</label>
+                    <input type="date" id="admission_date" name="admission_date" value="{{ student.admission_date }}" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+            {% else %}
+            <p>Student not found.</p>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>
