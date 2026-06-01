@@ -15,13 +15,12 @@ MYSQL_AVAILABLE = True
 
 
 DB_CONFIG = {
-    "host": os.environ.get("MYSQL_HOST", "localhost"),
-    "port": int(os.environ.get("MYSQL_PORT", 3306)),
-    "user": os.environ.get("MYSQL_USER", "root"),
-    "password": os.environ.get("MYSQL_PASSWORD"),
-    "database": os.environ.get("MYSQL_DATABASE", "school_erp"),
+    "host": os.environ["MYSQL_HOST"],
+    "port": int(os.environ["MYSQL_PORT"]),
+    "user": os.environ["MYSQL_USER"],
+    "password": os.environ["MYSQL_PASSWORD"],
+    "database": os.environ["MYSQL_DATABASE"],
 }
-
 UPLOADS_DIR = "erp_uploads"
 ALLOWED_EXTENSIONS = {"pdf", "doc", "docx", "txt", "png", "jpg", "jpeg", "gif", "zip", "ppt", "pptx", "xls", "xlsx"}
 
